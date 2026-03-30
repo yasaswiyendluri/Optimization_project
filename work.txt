@@ -1,0 +1,17 @@
+The folder structure (intial)
+
+Optimization_project/
+├── data/               
+│   ├── raw/            # Original Kaggle CSV
+│   └── processed/      # Cleaned data (optional but useful)
+│
+├── src/
+│   ├── models.py       # Machine + risk + robustness logic
+│   ├── optimizer.py    # ASA-PSO / PSO
+│   └── utils.py        # (optional) helper functions
+│
+├── main.py             
+├── config.py           # Parameters (VERY useful)
+├── requirements.txt    
+├── work.txt            
+└── README.md
