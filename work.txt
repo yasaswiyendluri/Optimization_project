@@ -15,3 +15,10 @@ Optimization_project/
 ├── requirements.txt    
 ├── work.txt            
 └── README.md
+
+
+
+05/04/26:
+
+Added initial config.py defining machines, costs, time limits, and degradation parameters for the model.
+
