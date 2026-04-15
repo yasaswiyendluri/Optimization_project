@@ -1,54 +1,38 @@
-# config.py
+#  Dataset 
+DATA_PATH = "data/ai4i2020.csv"
 
-# --- General System Parameters ---
-NUM_MACHINES = 4
-TASK_PERIOD = 40  # Days the system ran before needing maintenance [cite: 637]
-NEXT_TASK_TIME = 50  # Duration of the upcoming mission [cite: 645]
-DAILY_DEMAND = 200  # Units required per day [cite: 637]
+# AI4I column names
+TYPE_COL    = "Type"               # L, M, H
+WEAR_COL    = "Tool wear [min]"    # our KQC (quality characteristic)
+TORQUE_COL  = "Torque [Nm]"       # noise factor
+FAILURE_COL = "Machine failure"   # 0 or 1
 
-# --- Maintenance Constraints ---
-# These are the limits the optimizer must respect [cite: 645]
-TOTAL_BUDGET = 6000  # Maximum money allowed for all repairs
-TOTAL_TIME_LIMIT = 3.0  # Maximum hours allowed for all repairs
+# 3 machine types = 3 stages in series
+STAGES = ["L", "M", "H"]
 
-# --- Machine-Specific Data (Table 1 & 6 from Paper) ---
-# Each dictionary represents a machine's name, job, and repair costs.
-MACHINES_INFO = {
-    "M1": {
-        "process": "External Grinding",
-        "fixed_cost": 160,
-        "max_cost": 3500,
-        "fixed_time": 0.16,
-        "max_time": 1.86
-    },
-    "M2": {
-        "process": "Face Grinding",
-        "fixed_cost": 140,
-        "max_cost": 3000,
-        "fixed_time": 0.14,
-        "max_time": 1.74
-    },
-    "M3": {
-        "process": "Cementation",
-        "fixed_cost": 110,
-        "max_cost": 2500,
-        "fixed_time": 0.11,
-        "max_time": 1.60
-    },
-    "M4": {
-        "process": "Wire Winding",
-        "fixed_cost": 120,
-        "max_cost": 2800,
-        "fixed_time": 0.12,
-        "max_time": 1.72
-    }
-}
+#  Task parameters  
+TASK_HOURS      = 24    # one shift = 24 hours (each row = 1 hour)
+NEXT_TASK_HOURS = 48    # next task duration tm
+TASK_DEMAND     = 200   # units required per task
 
-# --- Weibull Degradation Parameters (Table 2 & Page 12) ---
-# These 'math constants' define how quickly each machine wears out. [cite: 627, 630]
-WEIBULL_PARAMS = {
-    "M1": {"A": 0.3877, "Theta": 0.2998, "J": 2.2569},
-    "M2": {"A": 0.4522, "Theta": 0.2271, "J": 2.1478},
-    "M3": {"A": 0.3477, "Theta": 0.2428, "J": 1.9845},
-    "M4": {"A": 0.3562, "Theta": 0.2831, "J": 2.1096}
-}
+#  Maintenance budget 
+BUDGET_COST = 8000   # C0
+BUDGET_TIME = 4.0    # T0 (hours)
+
+# Fixed + max variable maintenance cost/time per stage [L, M, H]
+C_FIX = [120,  140,  160 ]
+C_MAX = [2500, 3000, 3500]
+T_FIX = [0.20, 0.30, 0.40]
+T_MAX = [0.80, 1.00, 1.20]
+
+# Maintenance levels: 0 = do nothing, MC = perfect
+MC = 5
+
+# PSO / ASA-PSO 
+N_PARTICLES = 30
+MAX_ITER    = 200
+OMEGA       = 0.7    # inertia weight
+C1          = 1.5    # cognitive
+C2          = 1.5    # social
+SA_MU       = 0.95   # SA cooling rate
+FAILURE_MODE_COLS = ["TWF", "HDF", "PWF", "OSF", "RNF"]
