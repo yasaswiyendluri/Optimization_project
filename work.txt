@@ -22,3 +22,10 @@ Optimization_project/
 
 Added initial config.py defining machines, costs, time limits, and degradation parameters for the model.
 
+
+
+15/04/26:
+
+commands to run 
+ pip install -r requirements.txt
+ python main.py
