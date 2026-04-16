@@ -84,12 +84,14 @@ matplotlib
 
 From the project root directory:
 
+Full pipeline:
 ```
 python main.py
 ```
 
-```
 To run individual modes:
+
+```
 python main.py --mode eda
 python main.py --mode quality
 python main.py --mode states
