@@ -1,5 +1,3 @@
----
-
 # Selective Maintenance Optimization using ASA-PSO
 
 ## Overview
