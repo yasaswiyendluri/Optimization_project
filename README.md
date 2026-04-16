@@ -88,6 +88,15 @@ From the project root directory:
 python main.py
 ```
 
+```
+To run individual modes:
+python main.py --mode eda
+python main.py --mode quality
+python main.py --mode states
+python main.py --mode optimize
+python main.py --mode compare
+
+```
 ---
 
 ## Methodology
