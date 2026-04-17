@@ -39,21 +39,6 @@ def load():
     return df
 
 
-def run_eda(df):
-    print("\nEDA Summary")
-    for s in cfg.STAGES:
-        sub = df[df["stage"] == s]
-        print(f"Stage {s}: rows={len(sub)}, failure_rate={round(sub[cfg.FAILURE_COL].mean()*100,2)}%, avg_wear={round(sub[cfg.WEAR_COL].mean(),1)}")
-
-    counts = [int(df[c].sum()) for c in cfg.FAILURE_MODE_COLS]
-    fig, ax = plt.subplots(figsize=(6, 3))
-    ax.bar(cfg.FAILURE_MODE_COLS, counts)
-    ax.set_title("Failure Mode Counts")
-    ax.grid(axis="y", alpha=0.3)
-    plt.tight_layout()
-    plt.savefig("results/eda_failure_modes.png", dpi=130)
-    plt.close()
-
 
 def run_models(df):
     print("\nModel Results")
@@ -182,8 +167,7 @@ if __name__ == "__main__":
 
     print("Selective Maintenance Optimization")
 
-    df           = load()
-    run_eda(df)
+    df = load()
     machines, qm = run_models(df)
     run_optimize(machines)
     run_compare(machines)
