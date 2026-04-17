@@ -61,8 +61,8 @@ def asa_pso(fobj, dim, lo=0.0, hi=None, n=None, iters=None):
         omega_k = max(0.4, min(0.95, 0.9 - (k / iters) * (1.0 - ratio)))
 
         
-        c1 = 2.5  - k * (2.5  - 1.25) / iters
-        c2 = 1.25 + k * (2.5  - 1.25) / iters
+        c1 = 2.5  - k * (2.5  - 1.0) / iters
+        c2 = 1.0 + k * (2.5  - 1.0) / iters
 
         for i in range(n):
             j     = random.choice([x for x in range(n) if x != i])
@@ -95,6 +95,6 @@ def asa_pso(fobj, dim, lo=0.0, hi=None, n=None, iters=None):
                 best_ever   = pos[i][:]
 
         T *= cfg.SA_MU                   
-        curve.append(-gbest_f)           
+        curve.append(-best_ever_f)           
 
     return best_ever, best_ever_f, curve

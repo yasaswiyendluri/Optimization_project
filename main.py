@@ -1,3 +1,4 @@
+
 import os, sys, random
 import numpy as np
 import pandas as pd
@@ -12,6 +13,9 @@ from src.optimizer import asa_pso, vanilla_pso
 
 os.makedirs("results", exist_ok=True)
 
+plt.style.use('seaborn-v0_8-muted') # Or 'ggplot'
+plt.rcParams['axes.grid'] = True
+plt.rcParams['grid.alpha'] = 0.3
 
 def load():
     if not os.path.exists(cfg.DATA_PATH):
